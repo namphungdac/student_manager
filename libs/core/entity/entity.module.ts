@@ -1,21 +1,24 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TokenizedPostEntity } from '@app/core/entity/entities/tokenized-post.entity';
-import { TransactionHistoryEntity } from '@app/core/entity/entities/transaction-history.entity';
-import { PostOwnEntity } from '@app/core/entity/entities/post-own.entity';
-import { TrackingFeeEntity } from '@app/core/entity/entities/tracking-fee.entity';
-import { PostOwnService } from '@app/core/repositories/post-own.service';
+import { StudentEntity } from '@app/core/entity/entities/student.entity';
+import { CourseEntity } from '@app/core/entity/entities/course.entity';
+import { TeacherEntity } from '@app/core/entity/entities/teacher.entity';
+import { ClassEntity } from '@app/core/entity/entities/class.entity';
+import { StudentClassEntity } from '@app/core/entity/entities/student-class.entity';
+import { StudentDBService } from '@app/core/repositories/studentDB.service';
+import { UtilsService } from '../../untils/utils.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      TokenizedPostEntity,
-      TransactionHistoryEntity,
-      PostOwnEntity,
-      TrackingFeeEntity,
+      StudentEntity,
+      CourseEntity,
+      TeacherEntity,
+      ClassEntity,
+      StudentClassEntity,
     ]),
   ],
-  providers: [PostOwnService],
-  exports: [PostOwnService],
+  providers: [StudentDBService, UtilsService],
+  exports: [StudentDBService],
 })
 export class EntityModule {}
